@@ -1,9 +1,6 @@
 CREATE DATABASE floristeria;
 USE floristeria;
 
-
- --TABLA CLIENTE--
-
 CREATE TABLE Cliente (
     DNI VARCHAR(20) PRIMARY KEY, -- Documento único
     Nombre VARCHAR(100) NOT NULL,
@@ -11,8 +8,6 @@ CREATE TABLE Cliente (
     Telefono VARCHAR(20),
     Correo VARCHAR(100) UNIQUE
 );
-
- --TABLA PROVEEDOR--
 
 CREATE TABLE Proveedor (
     RUC VARCHAR(20) PRIMARY KEY, -- Registro Único de Contribuyente
@@ -23,8 +18,6 @@ CREATE TABLE Proveedor (
 );
 
 
- --TABLA PRODUCTO--
-
 CREATE TABLE Producto (
     Codigo VARCHAR(20) PRIMARY KEY,
     Nombre VARCHAR(100) NOT NULL,
@@ -32,9 +25,6 @@ CREATE TABLE Producto (
     Precio DECIMAL(10,2) NOT NULL CHECK (Precio > 0),
     Disponibilidad INT NOT NULL CHECK (Disponibilidad >= 0)
 );
-
-
- --TABLA PEDIDO--
 
 CREATE TABLE Pedido (
     ID_Pedido INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,9 +36,6 @@ CREATE TABLE Pedido (
     FOREIGN KEY (DNI_Cliente) REFERENCES Cliente(DNI)
 );
 
- --TABLA DETALLEPEDIDO--
- --(Relaciona Pedido con Producto)--
-
 CREATE TABLE DetallePedido (
     ID_Pedido INT,
     Codigo VARCHAR(20),
@@ -58,10 +45,6 @@ CREATE TABLE DetallePedido (
     FOREIGN KEY (ID_Pedido) REFERENCES Pedido(ID_Pedido),
     FOREIGN KEY (Codigo) REFERENCES Producto(Codigo)
 );
-
-
- --TABLA PROVEEDOR_PRODUCTO--
- --(Relaciona Proveedor con Producto)--
 
 CREATE TABLE Proveedor_Producto (
     RUC VARCHAR(20),
